@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
+#correct="$(cat /etc/verify)"
+correct1="$(date +%N| sha1sum | awk '{print toupper($1)}')"
+correct2="$(date +%N| sha1sum | awk '{print toupper($1)}')"
+correct="$correct1$correct2"
+
+echo "Password: $correct"
 echo -n "Password: "
 read password
-
-correct="$(cat /etc/verify)"
 
 if [ $password = $correct ]
   then
